@@ -1,22 +1,16 @@
 [build-system]
-requires = [
-    "flit_core >=3.4,<4",
-    "wheel",
-    "oldest-supported-numpy",
-]
+requires = ["flit_core >=3.4,<4", "wheel", "oldest-supported-numpy"]
 build-backend = "flit_core.buildapi"
 
 [project]
 name = "poliastro"
 readme = "README.md"
-requires-python = ">=3.8"
-license = {file = "COPYING"}
-authors = [
-    {name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space"}
-]
+requires-python = ">=3.10"
+license = { file = "COPYING" }
+authors = [{ name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space" }]
 maintainers = [
-    {name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space"},
-    {name = "Jorge Martinez Garrido", email = "contact@jorgemartinez.space"}
+    { name = "Juan Luis Cano Rodríguez", email = "hello@juanlu.space" },
+    { name = "Jorge Martinez Garrido", email = "contact@jorgemartinez.space" },
 ]
 keywords = [
     "aero",
@@ -25,7 +19,7 @@ keywords = [
     "astrodynamics",
     "orbits",
     "kepler",
-    "orbital mechanics"
+    "orbital mechanics",
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -48,14 +42,13 @@ classifiers = [
 dependencies = [
     "astropy >=5.0",
     "astroquery >=0.3.9",
-    "jplephem",
+    "jplephem >=2.22",
     "matplotlib >=2.0,!=3.0.1",
-    "numba >=0.46 ; python_version<'3.9'",
-    "numba >=0.53.0 ; python_version>='3.9'",
-    "numpy",
-    "pandas",
-    "plotly >=4.0,<6",
-    "pyerfa",
+    "numba >=0.53.0",
+    "numpy <=2.0",
+    "pandas >=2.0",
+    "plotly >=4.0",
+    "pyerfa >=2.0",
     "scipy >=1.4.0",
 ]
 dynamic = ["version", "description"]
@@ -68,77 +61,32 @@ Tracker = "https://github.com/poliastro/poliastro/issues"
 Funding = "https://opencollective.com/poliastro"
 Changelog = "https://docs.poliastro.space/en/stable/changelog.html"
 
-[project.optional-dependencies]
-jupyter = ["notebook", "ipywidgets>=7.6"]
-cesium = ["czml3 ~=0.5.3"]
-doc = [
-    "httpx",
-    "ipython>=5.0",
-    "ipywidgets>=7.6",
-    "jupyter-client",
-    "jupytext",
-    "myst-parser>=0.13.1",
-    "nbsphinx>=0.8.6",
-    "nbconvert>=5.5",
-    "sgp4",
-    "sphinx!=3.5,!=4.0,<5.1",  # https://github.com/readthedocs/sphinx-hoverxref/issues/119
-    "sphinx-autoapi",
-    "sphinx-gallery<=0.7.0",  # Just to avoid the jupytext warning
-    "sphinx_rtd_theme~=1.0.0",
-    "sphinx-hoverxref==0.7b1",
-    "sphinx-notfound-page",
-    "sphinx-copybutton>0.2.9",
-    "sphinx-github-role~=0.1.0",
-]
-test = [
-    "coverage",
-    "hypothesis",
-    "import-linter[toml]",
-    "mypy>=0.740",
-    "pre-commit",
-    "pytest>=3.2",
-    "pytest-cov<2.6.0",  # https://github.com/pytest-dev/pytest-cov/issues/222
-    "pytest-doctestplus>=0.8",  # https://github.com/astropy/pytest-doctestplus/issues/118
-    "pytest-mpl",
-    "pytest-mypy",
-    "pytest-remotedata",
-    "tox",
-]
-
 [tool.flit.sdist]
 include = [
     "src/poliastro/atmosphere/data/coesa62.dat",
     "src/poliastro/atmosphere/data/coesa76.dat",
     "src/poliastro/atmosphere/data/coesa76_p.dat",
     "src/poliastro/atmosphere/data/coesa76_rho.dat",
-    "setup.cfg"
+    "setup.cfg",
 ]
-exclude = [
-    "docs/"
-]
+exclude = ["docs/"]
 
 [tool.black]
 line-length = 79
 
 [tool.ruff]
 select = [
-    "E",  # pycodestyle, see https://github.com/charliermarsh/ruff#pycodestyle-e-w
-#    "D",  # pydocstyle, see https://github.com/charliermarsh/ruff#pydocstyle-d
-    "F",  # pyflakes, see https://github.com/charliermarsh/ruff#pyflakes-f
-    "I"   # isort, see https://github.com/charliermarsh/ruff#isort-i
+    "E", # pycodestyle, see https://github.com/charliermarsh/ruff#pycodestyle-e-w
+    #    "D",  # pydocstyle, see https://github.com/charliermarsh/ruff#pydocstyle-d
+    "F", # pyflakes, see https://github.com/charliermarsh/ruff#pyflakes-f
+    "I", # isort, see https://github.com/charliermarsh/ruff#isort-i
 ]
 
 ignore = [
-    "E501",  # Line too long. Ignoring this so "black" manages line length.
+    "E501", # Line too long. Ignoring this so "black" manages line length.
 ]
 
-exclude = [
-    ".git",
-    ".tox",
-    ".venv",
-    "build",
-    "dist",
-]
+exclude = [".git", ".tox", ".venv", "build", "dist"]
 
 [tool.ruff.isort]
 combine-as-imports = true
@@ -179,7 +127,7 @@ forbidden_modules = ["astropy.units"]
 [tool.pytest.ini_options]
 norecursedirs = [".git", ".tox", "dist", "build", ".venv"]
 testpaths = ["tests"]
-python_files ="test_*.py"
+python_files = "test_*.py"
 doctest_plus = false
 addopts = ["--strict-markers"]
 markers = ["slow", "remote_data", "filterwarnings", "mpl_image_compare"]
