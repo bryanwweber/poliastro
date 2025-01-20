@@ -45,7 +45,7 @@ dependencies = [
     "jplephem >=2.22",
     "matplotlib >=2.0,!=3.0.1",
     "numba >=0.53.0",
-    "numpy <=2.0",
+    "numpy >=2.0",
     "pandas >=2.0",
     "plotly >=4.0",
     "pyerfa >=2.0",
